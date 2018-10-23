@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
-  has_many :items
+  has_many :cartitems
+  has_many :items, through: :cartitems
 
 
 
