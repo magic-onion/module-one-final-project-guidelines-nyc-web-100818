@@ -1,6 +1,6 @@
-User.destroy_all
-Item.destroy_all
-Cart.destroy_all
+User.delete_all
+Item.delete_all
+Cart.delete_all
 
 u1 = User.create(name: "alex")
 u2 = User.create(name: "jon")
