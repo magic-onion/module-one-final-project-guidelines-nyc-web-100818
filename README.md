@@ -1,3 +1,14 @@
+# To Dos
+ - Determine whether or not our Cart_item model is functioning as intended
+ - Test all tables and expected basic functionality
+ - Decide on added features and write deliverables
+ - Determine structure of seed data
+ - write seed file
+ - write features based on deliverables
+ - test features
+ - refactor methods where necessary
+
+
 # Module One Final Project Guidelines
 
 Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
