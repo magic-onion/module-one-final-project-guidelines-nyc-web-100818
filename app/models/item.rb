@@ -1,6 +1,5 @@
 class Item < ActiveRecord::Base
-  belongs_to :cart
+  has_many :carts, through: :cartitems
 
-  attr_accessor :name, :quantity, :price
 
 end
