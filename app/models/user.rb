@@ -29,7 +29,16 @@ class User < ActiveRecord::Base
   end
     #would like to not require the user to enter their inputs in quotes
 
+    def list_items_in_cart(cart)
+      our_cart = Cart.find_by(name: cart)
+      our_cart.items.each {|item| puts "Spent $#{item.price}0 on #{item.name}"}
+      "what else can I do?"
+    end
 
+    def list_unique_items_and_counts(cart)
+      #would return a hash with items and their count
+      #... and maybe price or total spent on those <count> of items
+    end
 
 end
 
@@ -44,3 +53,5 @@ end
 #
 # u1.create_cart
 # => a new cart associated with that user
+
+#how much spent on a single item?
