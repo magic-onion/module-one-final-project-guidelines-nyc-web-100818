@@ -15,4 +15,4 @@ c2 = Cart.create(name: "jon's cart", date_created: Date.today)
 ct1 = CartItem.create(cart_id: 1, item_id: 1)
 ct2 = CartItem.create(cart_id: 1, item_id: 1)
 
-puts "#{c1.id}"
+puts "#{c1.id}" 
