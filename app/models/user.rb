@@ -40,6 +40,20 @@ class User < ActiveRecord::Base
       #... and maybe price or total spent on those <count> of items
     end
 
+    def total_spend_on_item(item)
+      our_item = Item.find_by(name: item)
+      spend = []
+      self.carts.each do |cart|
+        cart.items.each do |item|
+          if our_item == item
+            spend << item.price
+          end
+        end
+      end
+      total_spend = spend.reduce(:+)
+      puts "You have spent $#{total_spend}0 on #{our_item.name}."
+    end
+
 end
 
 #
@@ -49,9 +63,9 @@ end
 # see all their carts < - u1.carts
 # see all the items in their carts
 # find out their total spend <- using a cart helper method.
-#list items in carts in a nice way
+# list items in carts in a nice way
 #
 # u1.create_cart
 # => a new cart associated with that user
-
-#how much spent on a single item?
+#
+# how much spent on a single item?
