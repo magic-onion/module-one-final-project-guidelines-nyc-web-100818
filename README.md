@@ -1,5 +1,6 @@
 # To Dos
- - Determine whether or not our Cart_item model is functioning as intended
+ - Determine whether or not our Cart_item model is functioning as intended - Seems to be done. further testing required.
+
  - Test all tables and expected basic functionality
  - Decide on added features and write deliverables
  - Determine structure of seed data
@@ -7,6 +8,19 @@
  - write features based on deliverables
  - test features
  - refactor methods where necessary
+ - Write methods for user interface
+  - write a help command for the user
+ - Write Readme
+
+
+# Added features
+
+
+
+
+ -
+
+
 
 
 # Module One Final Project Guidelines
