@@ -12,5 +12,6 @@ c1 = Cart.create(name: "alex's cart", date_created: Date.today)
 c2 = Cart.create(name: "jon's cart", date_created: Date.today)
 
 ct1 = Cart_item.create(cart_id: 1, item_id: 1)
+ct2 = Cart_item.create(cart_id: 1, item_id: 1)
 
 puts "#{c1.id}"
