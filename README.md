@@ -2,6 +2,8 @@
  - Determine whether or not our Cart_item model is functioning as intended - Seems to be done. further testing required.
 
  - Test all tables and expected basic functionality
+
+
  - Decide on added features and write deliverables
  - Determine structure of seed data
  - write seed file
@@ -19,6 +21,36 @@
 
 
  -
+
+
+
+
+
+<!-- Begin Actual README Intended for User's Eyes -->
+
+Hello, thank you for using NAME (grocery tracker?)
+
+Please enter 'Bundle Install' into your command line to install necessary files before you begin.
+
+When you are ready to start, enter "Ruby bin/run.rb"
+
+You can type 'HELP' to see a list of commands
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

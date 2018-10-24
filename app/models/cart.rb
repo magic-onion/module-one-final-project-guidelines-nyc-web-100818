@@ -6,7 +6,6 @@ class Cart < ActiveRecord::Base
     self.items.size
   end
 
-
   def cart_total
     self.items.map {|item| item.price}.reduce(:+)
   end
@@ -21,7 +20,3 @@ class Cart < ActiveRecord::Base
   end
 
 end
-
-# total the price of all the items inside
-# average price per item of the whole carts
-# show all items in the cart
