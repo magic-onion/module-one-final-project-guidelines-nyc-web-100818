@@ -10,4 +10,9 @@ class Item < ActiveRecord::Base
     puts "anything else?"
   end
 
+  def self.list_ids_with_names
+    self.all.each {|item| puts "#{item.id} - #{item.name}"}
+    "done"
+  end
+
 end

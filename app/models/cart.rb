@@ -21,3 +21,7 @@ class Cart < ActiveRecord::Base
   end
 
 end
+
+
+#average cart cost
+#total spent on item

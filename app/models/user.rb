@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   end
     #would like to not require the user to enter their inputs in quotes
 
+    
+
 end
 
 #

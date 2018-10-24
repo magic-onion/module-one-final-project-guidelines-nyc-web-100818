@@ -5,6 +5,7 @@
 
 
  - Decide on added features and write deliverables
+ 
  - Determine structure of seed data
  - write seed file
  - write features based on deliverables

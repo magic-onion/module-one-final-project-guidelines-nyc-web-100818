@@ -1,4 +1,4 @@
-#dairy
+#Dairy
 milk = Item.create(name: "milk", price: 3.2)
 yogurt = Item.create(name: "yogurt", price: 5.1)
 eggs = Item.create(name: "eggs", price: 2.5)
@@ -93,7 +93,6 @@ sorrel = Item.create(name: "sorrel", price: 5.3)
 sage = Item.create(name: "sage", price: 4.4)
 shiso = Item.create(name: "shiso", price: 5.3)
 
-
 # condiments/misc
 salt = Item.create(name: "salt", price: 2.5)
 pepper = Item.create(name: "pepper", price: 2.7)
@@ -119,6 +118,7 @@ noodles = Item.create(name: "noodles", price: 1.3)
 nut_milk = Item.create(name: "nut milk", price: 3.6)
 nut_cheese = Item.create(name: "nut cheese", price: 4.2)
 
+#funny
 milk_steak = Item.create(name: "milk steak", price: 11.0)
 raw_jellybeans = Item.create(name: "raw jellybeans", price: 0.5)
 tomaco = Item.create(name: "tomaco", price: 0.9)
@@ -126,3 +126,12 @@ snozzberry = Item.create(name: "snozzberry", price: 2.5)
 magic_onion = Item.create(name: "magic onion", price: 999.9)
 cheeseburger_sundae = Item.create(name: "cheeseburger sundae", price: 39.0)
 easter_egg = Item.create(name: "easter egg", price: 220.0)
+
+#users for test cases and example
+
+#carts for test cases
+
+
+
+
+#cart items for those test cases
