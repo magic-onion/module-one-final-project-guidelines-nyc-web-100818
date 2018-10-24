@@ -36,8 +36,18 @@ class User < ActiveRecord::Base
     end
 
     def list_unique_items_and_counts(cart)
-      #would return a hash with items and their count
-      #... and maybe price or total spent on those <count> of items
+      our_cart = Cart.find_by(name: cart)
+      count_display = {}
+      count = 1
+      our_cart.items.each do |item|
+        if count_display[item.name] == count
+          count +=1
+          count_display[item.name] = count
+        else
+          count_display[item.name] = count
+        end
+      end
+      count_display
     end
 
     def total_spend_on_item(item)
