@@ -14,8 +14,3 @@ c2 = Cart.create(name: "jon's cart", date_created: Date.today)
 ct1 = Cart_item.create(cart_id: 1, item_id: 1)
 
 puts "#{c1.id}"
-
-
-
-#to do - add cartitems model and migration
-#to do - modify price column and remove quantity

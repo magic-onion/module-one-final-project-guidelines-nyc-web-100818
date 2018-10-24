@@ -7,5 +7,3 @@ class CreateItems < ActiveRecord::Migration[5.0]
     end
   end
 end
-
-#Probably want to make a new migration to change the datatype of price to Float
