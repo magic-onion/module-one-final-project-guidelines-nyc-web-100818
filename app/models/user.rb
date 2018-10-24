@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
     #would like to not require the user to enter their inputs in quotes
 
-    
+
 
 end
 
@@ -40,7 +40,7 @@ end
 # see all their carts < - u1.carts
 # see all the items in their carts
 # find out their total spend <- using a cart helper method.
-#
+#list items in carts in a nice way
 #
 # u1.create_cart
 # => a new cart associated with that user
