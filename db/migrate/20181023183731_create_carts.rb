@@ -6,4 +6,4 @@ class CreateCarts < ActiveRecord::Migration[5.0]
       t.datetime :date_created
     end
   end
-end
+end #comment
