@@ -15,4 +15,9 @@ class Item < ActiveRecord::Base
     "done"
   end
 
+  def self.list_names_with_prices
+    self.all.each {|item| puts "#{item.name} - $#{item.price}0"}
+    "anything else?"
+  end
+
 end
