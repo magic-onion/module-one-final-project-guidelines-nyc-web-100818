@@ -14,9 +14,13 @@ puts "HELLO WORLD"
 # add items
 # if invalid item, prompt for another item.
 #   read-tasks: averaging, total price, average price of carts
-<<<<<<< HEAD
-#committing for transparency
-=======
+
+#  user commands -
+#  cart history: all carts and prices
+# create new cart
+# add items
+# if invalid item, prompt for another item.
+#   read-tasks: averaging, total price, average price of carts
 # def welcome
 #   puts "Welcome to our Grocery!"
 # end
@@ -45,7 +49,7 @@ puts "HELLO WORLD"
 # end
 
 # def display_cart
-  
+
 # end
 
 # def exit
@@ -71,4 +75,3 @@ puts "HELLO WORLD"
 #   end
 #   run_list(cart)
 # end
->>>>>>> user-features
