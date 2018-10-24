@@ -18,11 +18,21 @@ class User < ActiveRecord::Base
     puts "Your spend since the beginning of time is #{total}"
   end
 
-  def add_item_to_cart(item)
-    case
-    when !Item.find_by(name: name)
+  # def add_item_to_cart(cart, item)
+  #   #makes sure the item exists
+  #   #makes sure the cart exists
+  #   #create a CartItem based on that
+  #   case
+  #   when !Item.find_by(name: name)
+  #     puts "that item does not seem to exist"
+  #   when Item.find_by(name: name)
+  #   end
+  # end
 
-  end
+
+
+
+
 end
 
 
