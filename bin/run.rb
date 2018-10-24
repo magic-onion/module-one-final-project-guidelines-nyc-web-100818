@@ -14,3 +14,4 @@ puts "HELLO WORLD"
 # add items
 # if invalid item, prompt for another item.
 #   read-tasks: averaging, total price, average price of carts
+#committing for transparency
