@@ -14,3 +14,4 @@ end
 # see all their carts < - u1.carts
 # see all the items in their carts
 # find out their total spend <- using a cart helper method.
+
