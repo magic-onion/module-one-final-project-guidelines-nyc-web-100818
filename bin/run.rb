@@ -4,8 +4,10 @@ require_relative './cli.rb'
 
 
 puts "Welcome to a Grocery Checker"
+login
 
 
+run_list
 
 #welcome prompt
 #"login"
