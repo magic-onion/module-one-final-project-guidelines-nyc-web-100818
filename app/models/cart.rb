@@ -21,7 +21,13 @@ class Cart < ActiveRecord::Base
     #cli.rb l. 61
   def avg_price_per_item
     total = self.cart_total
-    total/self.item_count
+    divisor = self.item_count
+    if divisor == 0
+      0.00
+    else
+      avg = total/divisor
+      avg.round(3)
+    end
   end
 
   #not used

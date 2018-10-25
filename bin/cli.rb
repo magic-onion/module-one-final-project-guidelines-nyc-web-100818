@@ -11,6 +11,12 @@ class Cli
     end
   end
 
+  def empty_cart
+    if @cart.items == []
+      puts "The cart is empty"
+    end
+  end
+
   def initialize(att1)
     @att1 = att1
     @user = user
@@ -59,7 +65,7 @@ class Cli
   def cart_total
     select_cart_prompt
     total = @cart.cart_total
-    if total == 0
+    if @cart.items == []
       puts "The cart is empty"
     else
     puts "The total price of this cart is $#{total}0"
@@ -68,11 +74,13 @@ class Cli
 
   def list_items_and_prices
     select_cart_prompt
+    empty_cart
     cart = @cart.name
     @user.list_items_in_cart(cart)
   end
 
   def avg_price_per_item
+    empty_cart
     select_cart_prompt
     avg = @cart.avg_price_per_item
     puts "The average price per item of this cart is $#{avg.round(2)}"

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   def total_spend #bugs out if there is nothing in a cart
     total = self.carts.map {|cart| cart.cart_total}
     result = total.reduce(:+)
-    puts "Your spend since the beginning of time is $#{result.round(2)}0", ""
+    puts "Your spend since the beginning of time is $#{result}0", ""
   end
 
   #cli.rb l. 28
