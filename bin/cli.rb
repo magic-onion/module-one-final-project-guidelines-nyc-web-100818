@@ -45,7 +45,8 @@ class Cli
     select_cart_prompt
     puts "which item would you like to add?", ""
     input = gets.chomp
-    @user.add_item_to_cart(@cart.id, "#{input}")
+    added_item = Item.find_by(name: "#{input}")
+    @cart.items << added_item
   end
 
   def remove_an_item
@@ -83,11 +84,15 @@ class Cli
 
   def cart_total
     select_cart_prompt
-    total = @cart.cart_total
     if @cart.items == []
+      total = 0
       puts "The cart is empty", ""
     else
-    puts "The total price of this cart is $#{total}0"
+      binding.pry
+      all_prices = @cart.items.map {|item| item.price}
+      total = all_prices.reduce(:+)
+      total.round(2)
+      puts "The total price of this cart is $#{total}0", ""
     end
   end
 

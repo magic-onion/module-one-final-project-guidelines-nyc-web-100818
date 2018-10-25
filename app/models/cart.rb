@@ -8,15 +8,15 @@ class Cart < ActiveRecord::Base
   end
 
   #cli.rb l.
-  def cart_total
-    if self.items == []
-      total = 0
-    else
-      all_prices = self.items.map {|item| item.price}
-      total = all_prices.reduce(:+)
-      total
-    end
-  end
+  # def cart_total
+  #   if self.items == []
+  #     total = 0
+  #   else
+  #     all_prices = self.items.map {|item| item.price}
+  #     total = all_prices.reduce(:+)
+  #     total.round(2)
+  #   end
+  # end
 
     #cli.rb l.
   def avg_price_per_item

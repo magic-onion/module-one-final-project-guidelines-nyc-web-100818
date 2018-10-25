@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
     user_item = Item.find_by(name: "#{item}")
     if user_cart && user_item
       user_cart.items << user_item
+          puts "You have added #{user_item.name} to your current cart", ""
     else
       puts "That doesn't seem to be possible, please try again.", ""
     end
