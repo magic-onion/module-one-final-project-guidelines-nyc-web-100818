@@ -73,4 +73,14 @@ class User < ActiveRecord::Base
     puts "You have spent $#{total_spend}0 on #{our_item.name}.", ""
   end
 
+  def average_cart_cost
+    if self.carts.size == 0
+      0
+    else
+      total = self.carts.map {|cart| cart.cart_total}.reduce(:+)
+      divisor = Cart.all.size
+      (total/divisor).round(2)
+    end
+  end
+
 end

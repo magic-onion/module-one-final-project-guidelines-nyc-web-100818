@@ -4,6 +4,13 @@ class Cli
 
   attr_reader :user, :cart
 
+  def initialize(att1)
+    @att1 = att1
+    @user = user
+    @cart = cart
+  end
+
+  #helper methods
   def select_cart_prompt
     if @cart == nil
       puts "you need a cart first!", ""
@@ -17,15 +24,12 @@ class Cli
     end
   end
 
-  def initialize(att1)
-    @att1 = att1
-    @user = user
-    @cart = cart
-  end
-
+  #custom setter returns an instance of user as a c
   def user=(username)
     @user = User.find_or_create_by(name: "#{username.downcase}")
   end
+
+  #methods for main menu
 
   def welcome_prompt
     puts "Thank you for using Grocery Tracker. Please enter your username"
@@ -91,9 +95,12 @@ class Cli
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'items and prices' to display cart contents with prices", ""
     puts "- Type 'price per item' to display this cart's average price per item", ""
+    puts "- Type total' to display this cart's total cost", ""
     puts "- Type 'help' to display cart options", ""
     puts "- Type 'exit' to exit"
   end
+
+
 
   def item_spend
     puts "please enter an item"
@@ -105,17 +112,25 @@ class Cli
     @user.total_spend
   end
 
+  def average_cart_cost
+    result = @user.average_cart_cost
+    puts "Your carts cost an average of $#{result}0", ""
+  end
+
   def cart_options
     select_cart_prompt
     cart_options_helper
     input = ''
     while input
-      puts "Please enter a cart command"
+      puts "Please enter a cart command", ""
       input = gets.chomp
       case input
       when 'go back' then run_list
       when 'items and prices' then list_items_and_prices
       when 'price per item' then avg_price_per_item
+      when 'total' then cart_total
+      when 'view' then display_cart
+
       when 'help' then cart_options_helper
       when 'exit' then exit
         break
@@ -126,10 +141,13 @@ class Cli
     cart_options
   end
 
+  #most expensive item
+  #remove item?
   def history_options_helper
     puts "What would like to do today?", ""
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'total spend on item' to display the total amount spent on a single item", ""
+    puts "- Type 'average cost' to display the average cost of a cart", ""
     puts "- Type 'total spent' to display the total cost of all your carts", ""
     puts "- Type 'help' to display history options", ""
     puts "- Type 'exit' to exit this program", ""
@@ -139,12 +157,13 @@ class Cli
     history_options_helper
     input = ''
     while input
-      puts "Please enter a history command"
+      puts "Please enter a history command", ""
       input = gets.chomp
       case input
       when 'go back' then run_list
       when 'total spend on item' then item_spend
       when 'total spent' then total_spent
+      when 'average cost' then average_cart_cost
       when 'help' then history_options_helper
       when 'exit' then exit
         break
@@ -172,7 +191,7 @@ end
     help
     input = ''
     while input
-      puts "Please enter a command"
+      puts "Please enter a command", ""
       input = gets.chomp
       case input
       when 'select cart' then select_cart
