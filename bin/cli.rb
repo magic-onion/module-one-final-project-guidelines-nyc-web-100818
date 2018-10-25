@@ -30,14 +30,26 @@ end
 
 def login
   puts "Please enter your name:"
-  user_input = gets.chomp
-  logged_user = User.find_or_create_by(name: "#{user_input.downcase}")
-    puts "Welcome, #{logged_user.name}"
-    help
+  user_name = gets.chomp
+  if User.find_by(name: user_name)
+    puts "Welcome back, #{user_name}"
+  else
+    User.create(name: user_name)
+    puts "Welcome, #{user_name}"
+  end
 end
 
-def new_cart(user)
+def cart_total
+  cart_total
+end
+
+def new_cart
   create_cart(name)
+  Item.list_all_available
+end
+
+def add
+  add_item_to_cart(cart, item)
 end
 
 def display_cart
@@ -45,9 +57,6 @@ def display_cart
 end
 
 
-# def display_cart
-
-# end
 
 def exit
   puts "Goodbye!"
@@ -57,6 +66,7 @@ end
 
 
 def run_list
+  login
   help
   input = ''
   while input
@@ -64,10 +74,10 @@ def run_list
     input = gets.chomp
     case input
     when 'start' then new_cart(name)
-    when 'add' then add_item_to_cart(cart, item)
+    when 'add' then add
     when 'view' then update_cart(cart)
     when 'history' then display_cart
-    when 'total'
+    when 'total'then cart_total
     when 'exit' then exit
       break
     else help
