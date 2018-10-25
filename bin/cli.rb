@@ -34,14 +34,17 @@ def login
   logged_user = User.find_or_create_by(name: "#{user_input.downcase}")
     puts "Welcome, #{logged_user.name}"
     help
+    logged_user
 end
 
-def new_cart(user)
-  create_cart(name)
+def new_cart
+  puts "what would you like to call your cart?"
+  input = gets.chomp
+  login.create_cart("#{input}")
 end
 
 def display_cart
-  list_cart
+  login.carts
 end
 
 
@@ -63,7 +66,7 @@ def run_list
     puts "Please enter a command"
     input = gets.chomp
     case input
-    when 'start' then new_cart(name)
+    when 'start' then new_cart
     when 'add' then add_item_to_cart(cart, item)
     when 'view' then update_cart(cart)
     when 'history' then display_cart
