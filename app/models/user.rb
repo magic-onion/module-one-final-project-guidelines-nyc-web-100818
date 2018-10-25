@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   end
 
   def add_item_to_cart(cart, item)
-    user_cart = Cart.find_by(name: cart)
-    user_item = Item.find_by(name: item)
+    user_cart = Cart.find_by(name: "#{cart}")
+    user_item = Item.find_by(name: "#{item}")
     if user_cart && user_item
       user_cart.items << user_item
     else

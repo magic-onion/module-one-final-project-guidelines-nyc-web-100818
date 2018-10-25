@@ -10,6 +10,7 @@ puts "enter your name jerk"
 username = gets.chomp
 a.user=(username)
 a.select_cart
+a.add_item
 binding.pry
 puts "h"
 # run_list

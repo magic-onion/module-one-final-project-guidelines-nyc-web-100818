@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+require 'pry'
 class Cli
 
   attr_reader :user, :cart
@@ -22,7 +23,7 @@ class Cli
   def select_cart
     puts "please enter a cart name to view or create one"
     cart_data = gets.chomp
-    @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}")
+    @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}", user_id: @user.id)
   end
 
   def create_cart
@@ -31,10 +32,10 @@ class Cli
     @user.create_cart(input)
   end
 
-  def add_item(cart)
+  def add_item
     puts "which item would you like to add?"
     input = gets.chomp
-    @user.add_item_to_cart
+    @user.add_item_to_cart(@cart.name, "#{input}")
   end
 
   def list_items
@@ -42,30 +43,35 @@ class Cli
   end
 
   def display_cart
-    @user.list_unique_items_and_counts(cart)
+    @user.list_unique_items_and_counts(@cart.name)
   end
 
-  # def run_list
-  #   help
-  #   input = ''
-  #   while input
-  #     puts "Please enter a command"
-  #     input = gets.chomp
-  #     case input
-  #     when 'select cart' then cart=(input)
-  # =>  Create one next?
-  #     when 'add' then add_item
-  #     when 'list' then list_items
-  #     when 'view' then update_cart(cart)
-  #     when 'history' then display_cart
-  #     when 'total'then cart_total
-  #     when 'exit' then exit
-  #       break
-  #     else help
-  #     end
-  #   end
-  #   run_list
-  # end
+  def cart_total
+    @cart.cart_total
+  end
+
+  def run_list
+    help
+    input = ''
+    while input
+      puts "Please enter a command"
+      input = gets.chomp
+      case input
+      when 'select cart' then select_cart
+
+
+      when 'add' then add_item
+      when 'list' then list_items
+      when 'view' then update_cart(cart)
+      when 'history' then display_cart
+      when 'total'then cart_total
+      when 'exit' then exit
+        break
+      else help
+      end
+    end
+    run_list
+  end
 
 
 end
