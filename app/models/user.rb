@@ -59,6 +59,8 @@ class User < ActiveRecord::Base
         cart.items.each do |item|
           if our_item == item
             spend << item.price
+          else
+            puts "that is not an item in your cart"
           end
         end
       end
