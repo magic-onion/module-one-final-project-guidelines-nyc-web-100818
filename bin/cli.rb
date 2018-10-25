@@ -85,7 +85,8 @@ def run_list
   input = ''
   while input
     puts "Please enter a command"
-
+    input = gets.chomp
+    case input
     when 'start' then new_cart(name)
     when 'add' then add
     when 'view' then update_cart(cart)
