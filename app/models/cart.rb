@@ -7,7 +7,7 @@ class Cart < ActiveRecord::Base
     self.items.size
   end
 
-  #cli.rb l. 51
+  #cli.rb l.
   def cart_total
     if self.items == []
       total = 0
@@ -18,7 +18,7 @@ class Cart < ActiveRecord::Base
     end
   end
 
-    #cli.rb l. 61
+    #cli.rb l.
   def avg_price_per_item
     total = self.cart_total
     divisor = self.item_count
@@ -35,8 +35,11 @@ class Cart < ActiveRecord::Base
     self.items.map {|item| item.name}
   end
 
+  def remove_item(name)
+    self.items.each do |item|
+      if item.name == name
+        self.items.delete(item)
+      end
+  end
+
 end
-
-
-#average cart cost
-#total spent on item

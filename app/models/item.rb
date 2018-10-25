@@ -10,14 +10,14 @@ class Item < ActiveRecord::Base
     puts "anything else?"
   end
 
+  #for early testing purposes
   def self.list_ids_with_names
     self.all.each {|item| puts "#{item.id} - #{item.name}"}
-    "done"
   end
 
+  #cli.rb l. 52
   def self.list_names_with_prices
     self.all.each {|item| puts "#{item.name} - $#{item.price}0"}
-    "anything else?"
   end
 
 end

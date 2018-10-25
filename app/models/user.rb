@@ -14,14 +14,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  #cli.rb l. 73
+  #cli.rb l.
   def total_spend #bugs out if there is nothing in a cart
     total = self.carts.map {|cart| cart.cart_total}
     result = total.reduce(:+)
     puts "Your spend since the beginning of time is $#{result}0", ""
   end
 
-  #cli.rb l. 28
+  #cli.rb l.
   def add_item_to_cart(cart, item)
     user_cart = Cart.find_by(name: "#{cart}")
     user_item = Item.find_by(name: "#{item}")
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  #cli.rb l. 57
+  #cli.rb l.
   def list_items_in_cart(cart)
     our_cart = Cart.find_by(name: cart)
     our_cart.items.each {|item| puts "Spent $#{item.price}0 on #{item.name}", ""}
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
 
-  #cli.rb l. 43
+  #cli.rb l.
   def list_unique_items_and_counts(cart)
     our_cart = Cart.find_by(name: cart)
     count_display = {}
@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  #cli.rb l. 80
+  #cli.rb l.
   def total_spend_on_item(item)
     our_item = Item.find_by(name: item)
     spend = []
@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
     puts "You have spent $#{total_spend}0 on #{our_item.name}.", ""
   end
 
+  #cli.rb l. 
   def average_cart_cost
     if self.carts.size == 0
       0

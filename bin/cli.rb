@@ -48,6 +48,14 @@ class Cli
     @user.add_item_to_cart(@cart.name, "#{input}")
   end
 
+  def remove_an_item
+    select_cart_prompt
+    empty_cart
+    puts "Which item would you like to remove?," ""
+    input = gets.chomp
+    @cart.remove_item
+  end
+
   def list_items
     Item.list_names_with_prices
   end
@@ -81,7 +89,6 @@ class Cli
   end
 
   #cart options methods
-
   def list_items_and_prices
     select_cart_prompt
     empty_cart
@@ -96,6 +103,7 @@ class Cli
     puts "The average price per item of this cart is $#{avg.round(2)}"
   end
 
+  #history options methods
   def item_spend
     puts "please enter an item"
     input = gets.chomp
@@ -134,6 +142,7 @@ class Cli
       case input
       when 'select cart' then select_cart
       when 'add' then add_item
+      when 'remove' then remove_an_item
       when 'list' then list_items
       when 'view' then display_cart
       when 'history' then history
