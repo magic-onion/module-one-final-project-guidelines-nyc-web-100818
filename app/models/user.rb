@@ -47,7 +47,9 @@ class User < ActiveRecord::Base
           count_display[item.name] = count
         end
       end
-      count_display
+      count_display.each do |key, value|
+        puts "you have #{value} of #{key}(s)"
+      end
     end
 
     def total_spend_on_item(item)

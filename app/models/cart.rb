@@ -8,7 +8,8 @@ class Cart < ActiveRecord::Base
   end
 
   def cart_total
-    self.items.map {|item| item.price}.reduce(:+)
+    all_prices = self.items.map {|item| item.price}
+    all_prices.reduce(:+)
   end
 
   def avg_price_per_item

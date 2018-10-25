@@ -51,7 +51,8 @@ class Cli
   end
 
   def cart_total
-    @cart.cart_total
+    total = @cart.cart_total
+    puts "The total price of this cart is $#{total}0"
   end
 
   def list_items_and_prices
@@ -60,21 +61,17 @@ class Cli
   end
 
   def avg_price_per_item
-    @cart.avg_price_per_item
+    avg = @cart.avg_price_per_item
+    puts "The average price per item of this cart is $#{avg.round(2)}"
   end
-
-
 
   def cart_options_helper
     puts "What would like to do today?"
     puts "- Type 'go back' to visit previous menu"
     puts "- Type 'items and prices' to display cart contents withs prices"
-    puts "- Type 'price per item' to display this cart's avergae price per item"
+    puts "- Type 'price per item' to display this cart's average price per item"
   end
 
-  #total spend
-  # list items and prices
-  # price per item
   # total spend on item
 
   def cart_options
@@ -85,7 +82,8 @@ class Cli
       input = gets.chomp
       case input
       when 'go back' then run_list
-      when "items and prices" then list_items_and_prices
+      when 'items and prices' then list_items_and_prices
+      when 'price per item' then avg_price_per_item
       when 'exit' then exit
         break
       else puts "sorry, I'm not sure what that means"
@@ -95,6 +93,7 @@ class Cli
     cart_options
   end
 
+#view and list options not functioning as intended.
   def run_list
     help
     input = ''

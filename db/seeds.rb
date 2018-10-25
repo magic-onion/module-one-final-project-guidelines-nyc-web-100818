@@ -135,8 +135,8 @@ easter_egg = Item.create(name: "easter egg", price: 220.0)
 u1 = User.create(name: "alex")
 u2 = User.create(name: "jon")
 
-c1 = Cart.create(name: "1st cart", date_created: Date.today)
-c2 = Cart.create(name: "My 1st cart", date_created: Date.today)
+c1 = Cart.create(name: "skateboard", user_id: 2, date_created: Date.today)
+c2 = Cart.create(name: "kitten", user_id: 2, date_created: Date.today)
 
 ct1 = CartItem.create(cart_id: 1, item_id: 1)
 ct2 = CartItem.create(cart_id: 2, item_id: 2)
