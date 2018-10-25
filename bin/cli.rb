@@ -8,29 +8,19 @@ class Cli
     @att1 = att1
     @user = user
     @cart = cart
-    # @entry = entry
 
   end
-
-  # def entry=(username)
-  #   username = gets.chomp
-  # end
 
   def user=(username)
     @user = User.find_or_create_by(name: "#{username.downcase}")
   end
+
   #user must select a cart to do anything
   def select_cart
     puts "please enter a cart name to view or create one"
     cart_data = gets.chomp
     @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}", user_id: @user.id)
   end
-
-  # def create_cart
-  #   puts "please enter a cart name"
-  #   input = gets.chomp
-  #   @user.create_cart(input)
-  # end
 
   def add_item
     puts "which item would you like to add?"
@@ -66,10 +56,10 @@ class Cli
   end
 
   def cart_options_helper
-    puts "What would like to do today?"
-    puts "- Type 'go back' to visit previous menu"
-    puts "- Type 'items and prices' to display cart contents withs prices"
-    puts "- Type 'price per item' to display this cart's average price per item"
+    puts "What would like to do today?", ""
+    puts "- Type 'go back' to visit previous menu", ""
+    puts "- Type 'items and prices' to display cart contents withs prices", ""
+    puts "- Type 'price per item' to display this cart's average price per item", ""
   end
 
   # total spend on item
@@ -93,7 +83,18 @@ class Cli
     cart_options
   end
 
-#view and list options not functioning as intended.
+def help
+  puts "What would like to do today?", ""
+  puts "-Type 'select cart' to start checking groceries", ""
+  puts "- Type 'add' to add an item to your cart.", ""
+  puts "- Type 'list' to list all items available for purchase", ""
+  puts "- Type 'view' to view the contents of your cart", ""
+  puts "- Type 'total' to display your current cart total", ""
+  puts "- Type 'history' to display all of your carts", ""
+  puts "- Type 'cart options' to enter cart menu and view cart options", ""
+  puts "- Type 'exit' to exit this program", ""
+end
+
   def run_list
     help
     input = ''
@@ -117,95 +118,9 @@ class Cli
     run_list
   end
 
-  def help
-    puts "What would like to do today?"
-    puts "-Type 'select cart' to start checking groceries"
-    puts "- Type 'add' to add an item to your cart."
-    puts "- Type 'list' to list all items available for purchase"
-    puts "- Type 'view' to view the contents of your cart"
-    puts "- Type 'total' to display your current cart total"
-    puts "- Type 'history' to display all of your carts"
-    puts "- Type 'cart options' to enter cart menu and view cart options"
-    puts "- Type 'exit' to exit this program"
-  end
-
   def exit
    puts "Goodbye!"
    exit!
  end
 
-
 end
-
-#  user commands -
-#  cart history: all carts and prices
-# create new cart
-# add items
-# if invalid item, prompt for another item.
-#   read-tasks: averaging, total price, average price of carts
-
-#  user commands -
-#  cart history: all carts and prices
-# create new cart
-# add items
-# if invalid item, prompt for another item.
-#   read-tasks: averaging, total price, average price of carts
-# def welcome
-#   puts "Welcome to our Grocery!"
-# end
-
-
-#very basic outline-ish
-#
-# def login
-#   puts "Please enter your name:"
-#   user_input = gets.chomp
-#   logged_user = User.find_or_create_by(name: "#{user_input.downcase}")
-#     puts "Welcome, #{logged_user.name}"
-#     help
-#     logged_user
-# end
-#
-# def new_cart
-#   puts "what would you like to call your cart?"
-#   input = gets.chomp
-#   user_name = gets.chomp
-#   if User.find_by(name: user_name)
-#     puts "Welcome back, #{user_name}"
-#   else
-#     User.create(name: user_name)
-#     puts "Welcome, #{user_name}"
-#   end
-# end
-#
-# def cart_total
-#   cart_total
-# end
-#
-# def new_cart
-#   create_cart(name)
-#   Item.list_all_available
-# end
-#
-# def add
-#   add_item_to_cart(cart, item)
-# >>>>>>> cli-file
-# end
-#
-# def display_cart
-#   login.carts
-# end
-#
-#
-#
-#
-#
-#
-
-
-#how do we call methods that are available to our models?
-  #we need to store (based on user input) instances of our models to call them
-
-#how do we store user inputs and match them to instances of our models
-
-#Wrap
