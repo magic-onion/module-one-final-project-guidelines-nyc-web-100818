@@ -6,13 +6,7 @@ require 'pry'
 puts "Welcome to a Grocery Checker"
 
 a = Cli.new("thing")
-puts "enter your name jerk"
+a.welcome_prompt
 username = gets.chomp
 a.user=(username)
 a.run_list
-
-#welcome prompt
-#"login"
-  #find or create by
-#welcome prompt for use
-#menu

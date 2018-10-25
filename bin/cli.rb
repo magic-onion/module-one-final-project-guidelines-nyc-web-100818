@@ -15,6 +15,10 @@ class Cli
     @user = User.find_or_create_by(name: "#{username.downcase}")
   end
 
+  def welcome_prompt
+    puts "Thank you for using Grocery Tracker. Please enter your username"
+  end
+
   #user must select a cart to do anything
   def select_cart
     puts "please enter a cart name to view or create one"
