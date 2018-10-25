@@ -59,7 +59,6 @@ class Cli
       case input
       when 'select cart' then select_cart
 
-
       when 'add' then add_item
       when 'list' then list_items
       when 'view' then update_cart(cart)
@@ -67,12 +66,21 @@ class Cli
       when 'total'then cart_total
       when 'exit' then exit
         break
-      else help
+      else puts "sorry, I'm not sure what that means"
+         help
       end
     end
     run_list
   end
 
+  def help
+    puts "What would like to do today?"
+    puts "- Type 'start' to begin a new shopping cart."
+    puts "- Type 'add'to add an item to your cart."
+    puts "- Type 'update' to "
+    puts "- Type 'history' to display your previous cart history"
+    puts "- Type 'exit' to exit this program"
+  end
 
 end
 
@@ -95,14 +103,6 @@ end
 
 
 #very basic outline-ish
-# def help
-#   puts "What would like to do today?"
-#   puts "- Type 'start' to begin a new shopping cart."
-#   puts "- Type 'add'to add an item to your cart."
-#   puts "- Type 'update' to "
-#   puts "- Type 'history' to display your previous cart history"
-#   puts "- Type 'exit' to exit this program"
-# end
 #
 # def login
 #   puts "Please enter your name:"
