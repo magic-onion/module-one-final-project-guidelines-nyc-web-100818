@@ -22,8 +22,10 @@ class User < ActiveRecord::Base
   end
 
   #cli.rb l.
-  def add_item_to_cart(cart, item)
-    user_cart = Cart.find_by(name: "#{cart}")
+
+  #what if there are multiple users with the same cart name?
+  def add_item_to_cart(cart_id, item)
+    user_cart = Cart.find(cart_id)
     user_item = Item.find_by(name: "#{item}")
     if user_cart && user_item
       user_cart.items << user_item
@@ -42,7 +44,7 @@ class User < ActiveRecord::Base
 
   #cli.rb l.
   def list_unique_items_and_counts(cart)
-    our_cart = Cart.find_by(name: cart)
+    our_cart = Cart.find(cart)
     count_display = {}
     count = 1
     our_cart.items.each do |item|
@@ -73,7 +75,7 @@ class User < ActiveRecord::Base
     puts "You have spent $#{total_spend}0 on #{our_item.name}.", ""
   end
 
-  #cli.rb l. 
+  #cli.rb l.
   def average_cart_cost
     if self.carts.size == 0
       0

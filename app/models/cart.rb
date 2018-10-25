@@ -36,11 +36,19 @@ class Cart < ActiveRecord::Base
   end
 
   def remove_item(name)
-    self.items.each do |item|
-      if item.name == name
-        self.items.delete(item)
+    if !self.items.find_by(name: name)
+      puts "that item was not found in this cart", ""
+    else
+      self.items.each do |item|
+        if item.name == name
+          puts "You have removed #{item.name} from your cart.", ""
+          self.items.delete(item)
+        end
       end
     end
   end
 
 end
+
+
+#first check to see if the conditio is true

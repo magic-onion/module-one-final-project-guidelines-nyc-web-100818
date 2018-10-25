@@ -45,7 +45,7 @@ class Cli
     select_cart_prompt
     puts "which item would you like to add?", ""
     input = gets.chomp
-    @user.add_item_to_cart(@cart.name, "#{input}")
+    @user.add_item_to_cart(@cart.id, "#{input}")
   end
 
   def remove_an_item
@@ -68,7 +68,7 @@ class Cli
     if @cart.items == []
       puts "the cart is empty", ""
     else
-      @user.list_unique_items_and_counts(@cart.name)
+      @user.list_unique_items_and_counts(@cart.id)
     end
   end
 
