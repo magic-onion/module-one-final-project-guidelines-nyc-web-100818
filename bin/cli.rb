@@ -44,7 +44,7 @@ class Cli
   end
 
   def history
-    @user.carts.each {|cart| puts "#{cart.name}"}
+    @user.carts.each {|cart| puts "#{cart.name}", ""}
   end
 
   def cart_total
@@ -65,19 +65,18 @@ class Cli
   def cart_options_helper
     puts "What would like to do today?", ""
     puts "- Type 'go back' to visit previous menu", ""
-    puts "- Type 'items and prices' to display cart contents withs prices", ""
+    puts "- Type 'items and prices' to display cart contents with prices", ""
     puts "- Type 'price per item' to display this cart's average price per item", ""
     puts "- Type 'exit' to exit"
   end
 
-  #bugs ############################
   def item_spend
     puts "please enter an item"
     input = gets.chomp
     @user.total_spend_on_item("#{input}")
   end
 
-  def total_spent #bugs out if there is nothing in a cart
+  def total_spent
     @user.total_spend
   end
 
@@ -135,7 +134,7 @@ def help
   puts "- Type 'view' to view the contents of your cart", ""
   puts "- Type 'total' to display your current cart total", ""
   puts "- Type 'history' to display all of your carts", ""
-  puts "-Type 'history options' to etner history menu"
+  puts "-Type 'history options' to enter history menu", ""
   puts "- Type 'cart options' to enter cart menu and view cart options", ""
   puts "- Type 'exit' to exit this program", ""
 end

@@ -7,16 +7,24 @@ class Cart < ActiveRecord::Base
     self.items.size
   end
 
+  #cli.rb l. 51
   def cart_total
-    all_prices = self.items.map {|item| item.price}
-    all_prices.reduce(:+)
+    if self.items == []
+      total = 0
+    else
+      all_prices = self.items.map {|item| item.price}
+      total = all_prices.reduce(:+)
+      total
+    end
   end
 
+    #cli.rb l. 61
   def avg_price_per_item
     total = self.cart_total
     total/self.item_count
   end
 
+  #not used
   def list_items
     self.items.map {|item| item.name}
   end
