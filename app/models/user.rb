@@ -23,17 +23,17 @@ class User < ActiveRecord::Base
 
   #cli.rb l.
 
-  #what if there are multiple users with the same cart name?
-  def add_item_to_cart(cart_id, item)
-    user_cart = Cart.find(cart_id)
-    user_item = Item.find_by(name: "#{item}")
-    if user_cart && user_item
-      user_cart.items << user_item
-          puts "You have added #{user_item.name} to your current cart", ""
-    else
-      puts "That doesn't seem to be possible, please try again.", ""
-    end
-  end
+  # #what if there are multiple users with the same cart name?
+  # def add_item_to_cart(cart_id, item)
+  #   user_cart = Cart.find(cart_id)
+  #   user_item = Item.find_by(name: "#{item}")
+  #   if user_cart && user_item
+  #     user_cart.items << user_item
+  #         puts "You have added #{user_item.name} to your current cart", ""
+  #   else
+  #     puts "That doesn't seem to be possible, please try again.", ""
+  #   end
+  # end
 
   #cli.rb l.
   def list_items_in_cart(cart)

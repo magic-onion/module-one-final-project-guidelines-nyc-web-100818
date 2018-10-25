@@ -46,9 +46,15 @@ class Cli
     puts "which item would you like to add?", ""
     input = gets.chomp
     added_item = Item.find_by(name: "#{input}")
-    @cart.items << added_item
+      if !added_item
+        puts "That item can't be added to the cart"
+      else
+        @cart.items << added_item
+        puts "You have added #{added_item.name} to the cart"
+      end
   end
 
+#actually removes all instances of that item
   def remove_an_item
     select_cart_prompt
     if @cart.items == []
@@ -92,7 +98,7 @@ class Cli
       all_prices = @cart.items.map {|item| item.price}
       total = all_prices.reduce(:+)
       total.round(2)
-      puts "The total price of this cart is $#{total}0", ""
+      puts "The total price of this cart is $#{total.round(2)}0", ""
     end
   end
 
@@ -104,6 +110,7 @@ class Cli
     @user.list_items_in_cart(cart)
   end
 
+  #broken
   def avg_price_per_item
     empty_cart
     select_cart_prompt
