@@ -20,7 +20,7 @@ class Cli
 
   def empty_cart
     if @cart.items == []
-      puts "The cart is empty"
+      puts "The cart is empty", ""
     end
   end
 
@@ -32,28 +32,31 @@ class Cli
   #methods for main menu
 
   def welcome_prompt
-    puts "Thank you for using Grocery Tracker. Please enter your username"
+    puts "Thank you for using Grocery Tracker. Please enter your username", ""
   end
 
   def select_cart
-    puts "please enter a cart name to view or create one"
+    puts "please enter a cart name to view or create one", ""
     cart_data = gets.chomp
     @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}", user_id: @user.id)
   end
 
   def add_item
     select_cart_prompt
-    puts "which item would you like to add?"
+    puts "which item would you like to add?", ""
     input = gets.chomp
     @user.add_item_to_cart(@cart.name, "#{input}")
   end
 
   def remove_an_item
     select_cart_prompt
-    empty_cart
-    puts "Which item would you like to remove?," ""
-    input = gets.chomp
-    @cart.remove_item
+    if @cart.items == []
+      empty_cart
+    else
+      puts "Which item would you like to remove?," ""
+      input = gets.chomp
+      @cart.remove_item(input)
+    end
   end
 
   def list_items
@@ -82,7 +85,7 @@ class Cli
     select_cart_prompt
     total = @cart.cart_total
     if @cart.items == []
-      puts "The cart is empty"
+      puts "The cart is empty", ""
     else
     puts "The total price of this cart is $#{total}0"
     end
@@ -100,12 +103,12 @@ class Cli
     empty_cart
     select_cart_prompt
     avg = @cart.avg_price_per_item
-    puts "The average price per item of this cart is $#{avg.round(2)}"
+    puts "The average price per item of this cart is $#{avg.round(2)}", ""
   end
 
   #history options methods
   def item_spend
-    puts "please enter an item"
+    puts "please enter an item", ""
     input = gets.chomp
     @user.total_spend_on_item("#{input}")
   end
@@ -124,6 +127,7 @@ class Cli
     puts "What would like to do today?", ""
     puts "-Type 'select cart' to start checking groceries", ""
     puts "- Type 'add' to add an item to your cart.", ""
+    puts "- Type 'remove' to remove an item to your cart.", ""
     puts "- Type 'list' to list all items available for purchase", ""
     puts "- Type 'view' to view the contents of your cart", ""
     puts "- Type 'total' to display your current cart total", ""
@@ -166,7 +170,7 @@ class Cli
     puts "- Type 'price per item' to display this cart's average price per item", ""
     puts "- Type total' to display this cart's total cost", ""
     puts "- Type 'help' to display cart options", ""
-    puts "- Type 'exit' to exit"
+    puts "- Type 'exit' to exit", ""
   end
 
   def cart_options
@@ -187,7 +191,7 @@ class Cli
       when 'help' then cart_options_helper
       when 'exit' then exit
         break
-      else puts "sorry, I'm not sure what that means"
+      else puts "sorry, I'm not sure what that means", ""
         cart_options_helper
       end
     end
@@ -219,7 +223,7 @@ class Cli
       when 'help' then history_options_helper
       when 'exit' then exit
         break
-      else puts "sorry, I'm not sure what that means"
+      else puts "sorry, I'm not sure what that means", ""
         history_options_helper
       end
     end

@@ -40,6 +40,7 @@ class Cart < ActiveRecord::Base
       if item.name == name
         self.items.delete(item)
       end
+    end
   end
 
 end
