@@ -66,7 +66,8 @@ class User < ActiveRecord::Base
 
 end
 
-#
+
+
 # User abilities:
 #
 # create a cart

@@ -11,7 +11,7 @@ class Cart < ActiveRecord::Base
     self.items.map {|item| item.price}.reduce(:+)
   end
 
-  def price_per_item
+  def avg_price_per_item
     total = self.cart_total
     total/self.item_count
   end

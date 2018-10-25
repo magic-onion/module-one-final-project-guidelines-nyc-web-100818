@@ -19,18 +19,18 @@ class Cli
   def user=(username)
     @user = User.find_or_create_by(name: "#{username.downcase}")
   end
-
+  #user must select a cart to do anything
   def select_cart
     puts "please enter a cart name to view or create one"
     cart_data = gets.chomp
     @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}", user_id: @user.id)
   end
 
-  def create_cart
-    puts "please enter a cart name"
-    input = gets.chomp
-    @user.create_cart(input)
-  end
+  # def create_cart
+  #   puts "please enter a cart name"
+  #   input = gets.chomp
+  #   @user.create_cart(input)
+  # end
 
   def add_item
     puts "which item would you like to add?"
@@ -46,8 +46,53 @@ class Cli
     @user.list_unique_items_and_counts(@cart.name)
   end
 
+  def history
+    @user.carts.each {|cart| puts "#{cart.name}"}
+  end
+
   def cart_total
     @cart.cart_total
+  end
+
+  def list_items_and_prices
+    cart = @cart.name
+    @user.list_items_in_cart(cart)
+  end
+
+  def avg_price_per_item
+    @cart.avg_price_per_item
+  end
+
+
+
+  def cart_options_helper
+    puts "What would like to do today?"
+    puts "- Type 'go back' to visit previous menu"
+    puts "- Type 'items and prices' to display cart contents withs prices"
+    puts "- Type 'price per item' to display this cart's avergae price per item"
+  end
+
+  #total spend
+  # list items and prices
+  # price per item
+  # total spend on item
+
+  def cart_options
+    cart_options_helper
+    input = ''
+    while input
+      puts "Please enter a cart command"
+      input = gets.chomp
+      case input
+      when 'go back' then run_list
+      when "items and prices" then list_items_and_prices
+      when 'exit' then exit
+        break
+      else puts "sorry, I'm not sure what that means"
+         cart_options_helper
+      end
+    end
+    cart_options
   end
 
   def run_list
@@ -58,12 +103,12 @@ class Cli
       input = gets.chomp
       case input
       when 'select cart' then select_cart
-
       when 'add' then add_item
       when 'list' then list_items
-      when 'view' then update_cart(cart)
-      when 'history' then display_cart
+      when 'view' then display_cart
+      when 'history' then history
       when 'total'then cart_total
+      when 'cart options' then cart_options
       when 'exit' then exit
         break
       else puts "sorry, I'm not sure what that means"
@@ -75,12 +120,21 @@ class Cli
 
   def help
     puts "What would like to do today?"
-    puts "- Type 'start' to begin a new shopping cart."
-    puts "- Type 'add'to add an item to your cart."
-    puts "- Type 'update' to "
-    puts "- Type 'history' to display your previous cart history"
+    puts "-Type 'select cart' to start checking groceries"
+    puts "- Type 'add' to add an item to your cart."
+    puts "- Type 'list' to list all items available for purchase"
+    puts "- Type 'view' to view the contents of your cart"
+    puts "- Type 'total' to display your current cart total"
+    puts "- Type 'history' to display all of your carts"
+    puts "- Type 'cart options' to enter cart menu and view cart options"
     puts "- Type 'exit' to exit this program"
   end
+
+  def exit
+   puts "Goodbye!"
+   exit!
+ end
+
 
 end
 
@@ -145,10 +199,6 @@ end
 #
 #
 #
-# def exit
-#   puts "Goodbye!"
-#   exit
-# end
 #
 #
 #
