@@ -85,3 +85,11 @@ def run_list
   end
   run_list
 end
+
+
+#how do we call methods that are available to our models?
+  #we need to store (based on user input) instances of our models to call them
+
+#how do we store user inputs and match them to instances of our models
+
+#Wrap
