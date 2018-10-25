@@ -4,6 +4,13 @@ class Cli
 
   attr_reader :user, :cart
 
+  def select_cart_prompt
+    if @cart == nil
+      puts "you need a cart first!", ""
+      select_cart
+    end
+  end
+
   def initialize(att1)
     @att1 = att1
     @user = user
@@ -26,10 +33,7 @@ class Cli
   end
 
   def add_item
-    if @cart == nil
-      puts "you need a cart first!"
-      select_cart
-    end
+    select_cart_prompt
     puts "which item would you like to add?"
     input = gets.chomp
     @user.add_item_to_cart(@cart.name, "#{input}")
@@ -40,7 +44,12 @@ class Cli
   end
 
   def display_cart
-    @user.list_unique_items_and_counts(@cart.name)
+    select_cart_prompt
+    if @cart.items == []
+      puts "the cart is empty", ""
+    else
+      @user.list_unique_items_and_counts(@cart.name)
+    end
   end
 
   def history
@@ -48,16 +57,23 @@ class Cli
   end
 
   def cart_total
+    select_cart_prompt
     total = @cart.cart_total
+    if total == 0
+      puts "The cart is empty"
+    else
     puts "The total price of this cart is $#{total}0"
+    end
   end
 
   def list_items_and_prices
+    select_cart_prompt
     cart = @cart.name
     @user.list_items_in_cart(cart)
   end
 
   def avg_price_per_item
+    select_cart_prompt
     avg = @cart.avg_price_per_item
     puts "The average price per item of this cart is $#{avg.round(2)}"
   end
@@ -67,6 +83,7 @@ class Cli
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'items and prices' to display cart contents with prices", ""
     puts "- Type 'price per item' to display this cart's average price per item", ""
+    puts "- Type 'help' to display cart options", ""
     puts "- Type 'exit' to exit"
   end
 
@@ -81,6 +98,7 @@ class Cli
   end
 
   def cart_options
+    select_cart_prompt
     cart_options_helper
     input = ''
     while input
@@ -90,6 +108,7 @@ class Cli
       when 'go back' then run_list
       when 'items and prices' then list_items_and_prices
       when 'price per item' then avg_price_per_item
+      when 'help' then cart_options_helper
       when 'exit' then exit
         break
       else puts "sorry, I'm not sure what that means"
@@ -104,6 +123,7 @@ class Cli
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'total spend on item' to display the total amount spent on a single item", ""
     puts "- Type 'total spent' to display the total cost of all your carts", ""
+    puts "- Type 'help' to display history options", ""
     puts "- Type 'exit' to exit this program", ""
   end
 
@@ -117,6 +137,7 @@ class Cli
       when 'go back' then run_list
       when 'total spend on item' then item_spend
       when 'total spent' then total_spent
+      when 'help' then history_options_helper
       when 'exit' then exit
         break
       else puts "sorry, I'm not sure what that means"
@@ -134,7 +155,7 @@ def help
   puts "- Type 'view' to view the contents of your cart", ""
   puts "- Type 'total' to display your current cart total", ""
   puts "- Type 'history' to display all of your carts", ""
-  puts "-Type 'history options' to enter history menu", ""
+  puts "- Type 'history options' to enter history menu", ""
   puts "- Type 'cart options' to enter cart menu and view cart options", ""
   puts "- Type 'exit' to exit this program", ""
 end

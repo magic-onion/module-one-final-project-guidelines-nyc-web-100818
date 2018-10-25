@@ -21,7 +21,7 @@ DONE
 
 
 
- -
+ - check all features for cart selected dependencies
 
 
 
