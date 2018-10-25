@@ -4,7 +4,6 @@ require_relative './cli.rb'
 
 
 puts "Welcome to a Grocery Checker"
-login
 
 
 run_list
@@ -14,14 +13,3 @@ run_list
   #find or create by
 #welcome prompt for use
 #menu
-
-
-
-#help prompt
-
-
-#exit buttoin
-
-
-# 100.times do prompt
-# end

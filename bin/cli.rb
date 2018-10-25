@@ -30,6 +30,7 @@ end
 
 def login
   puts "Please enter your name:"
+<<<<<<< HEAD
   user_input = gets.chomp
   logged_user = User.find_or_create_by(name: "#{user_input.downcase}")
     puts "Welcome, #{logged_user.name}"
@@ -41,6 +42,28 @@ def new_cart
   puts "what would you like to call your cart?"
   input = gets.chomp
   login.create_cart("#{input}")
+=======
+  user_name = gets.chomp
+  if User.find_by(name: user_name)
+    puts "Welcome back, #{user_name}"
+  else
+    User.create(name: user_name)
+    puts "Welcome, #{user_name}"
+  end
+end
+
+def cart_total
+  cart_total
+end
+
+def new_cart
+  create_cart(name)
+  Item.list_all_available
+end
+
+def add
+  add_item_to_cart(cart, item)
+>>>>>>> cli-file
 end
 
 def display_cart
@@ -48,9 +71,6 @@ def display_cart
 end
 
 
-# def display_cart
-
-# end
 
 def exit
   puts "Goodbye!"
@@ -60,17 +80,17 @@ end
 
 
 def run_list
+  login
   help
   input = ''
   while input
     puts "Please enter a command"
-    input = gets.chomp
-    case input
-    when 'start' then new_cart
-    when 'add' then add_item_to_cart(cart, item)
+
+    when 'start' then new_cart(name)
+    when 'add' then add
     when 'view' then update_cart(cart)
     when 'history' then display_cart
-    when 'total'
+    when 'total'then cart_total
     when 'exit' then exit
       break
     else help
@@ -78,3 +98,11 @@ def run_list
   end
   run_list
 end
+
+
+#how do we call methods that are available to our models?
+  #we need to store (based on user input) instances of our models to call them
+
+#how do we store user inputs and match them to instances of our models
+
+#Wrap
