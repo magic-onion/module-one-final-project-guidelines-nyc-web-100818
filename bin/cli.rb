@@ -104,10 +104,7 @@ class Cli
 
   #cart options methods
   def list_items_and_prices
-    select_cart_prompt
-    empty_cart
-    cart = @cart.name
-    @user.list_items_in_cart(cart)
+      @cart.items.each {|item| puts "Spent $#{item.price}0 on #{item.name}", ""}
   end
 
   #broken
