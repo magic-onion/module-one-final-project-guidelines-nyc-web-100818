@@ -1,6 +1,7 @@
 User.delete_all
 Item.delete_all
 Cart.delete_all
+CartItem.delete_all
 
 #Dairy
 milk = Item.create(name: "milk", price: 3.2)

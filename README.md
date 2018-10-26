@@ -1,3 +1,9 @@
+# Grocery Checker
+
+Thank you for using our Grocery Checker Command Line Interface Application.
+
+To install the app, make sure that your command line is in the "../modolue-one-final-project-guidelines-nyc-web-100818" directory.
+
 # To Dos
 DONE
  - Determine whether or not our Cart_item model is functioning as intended - Seems to be done. further testing required.
