@@ -80,6 +80,7 @@ class Cli
   end
 
   def history
+    puts "You Cart(s)", ""
     @user.carts.each {|cart| puts "#{cart.name}", ""}
   end
 
@@ -94,7 +95,6 @@ class Cli
       total = 0
       puts "The cart is empty", ""
     else
-      binding.pry
       all_prices = @cart.items.map {|item| item.price}
       total = all_prices.reduce(:+)
       total.round(2)
@@ -131,7 +131,7 @@ class Cli
 
   def average_cart_cost
     result = @user.average_cart_cost
-    puts "Your carts cost an average of $#{result}0", ""
+    puts "Your carts cost an average of $#{result}", ""
   end
 
   #main menu
