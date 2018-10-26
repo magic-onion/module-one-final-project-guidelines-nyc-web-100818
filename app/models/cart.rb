@@ -38,14 +38,18 @@ class Cart < ActiveRecord::Base
   def remove_item(name)
     if !self.items.find_by(name: name)
       puts "that item was not found in this cart", ""
+      return
     else
+      other_thing = nil
       self.items.each do |item|
         if item.name == name
-          puts "You have removed #{item.name} from your cart.", ""
-          self.items.delete(item)
+          thing = item.id
+          other_thing = CartItem.find_by(item_id: thing)
         end
       end
     end
+    other_thing.delete
+    puts "item removed!", ""
   end
 
 end
