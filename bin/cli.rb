@@ -1,5 +1,6 @@
 require_relative '../config/environment'
 require_relative './modules/cart_helper.rb'
+require_relative './modules/history_helper.rb'
 require 'pry'
 class Cli
   include CartHelper
@@ -122,7 +123,9 @@ class Cli
   end
 
   def total_spent
-    @user.total_spend
+    totals = @user.carts.map {|cart| cart_total(cart.items)}
+    totals.reduce(:+)
+    puts "Total spent is $#{totals}0"
   end
 
   def average_cart_cost
@@ -213,7 +216,7 @@ class Cli
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'total spend on item' to display the total amount spent on a single item", ""
     puts "- Type 'average cost' to display the average cost of a cart", ""
-    # puts "- Type 'total spent' to display the total cost of all your carts", ""
+    puts "- Type 'total spent' to display the total cost of all your carts", ""
     puts "- Type 'help' to display history options", ""
     puts "- Type 'exit' to exit this program", ""
   end

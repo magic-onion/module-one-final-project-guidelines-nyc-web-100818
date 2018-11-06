@@ -9,6 +9,9 @@ Item.create(name: "Asian Jewels Dim Sum", price: 20.0)
 Item.create(name: "J-Mart Condiments", price: 5.0)
 
 Item.create(name: "MTA fare", price: 40.0)
+
+
+#this is a terrible way to add data. Priority one is giving a user the ability to create items.
 #currently the only user is ALEXANDER T
 
 # #Dairy
