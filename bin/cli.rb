@@ -1,6 +1,9 @@
 require_relative '../config/environment'
+require_relative './modules/cart_helper.rb'
 require 'pry'
 class Cli
+  include CartHelper
+  include HistoryHelper
 
   attr_reader :user, :cart
 
@@ -12,12 +15,10 @@ class Cli
 
   #helper methods
   def select_cart_prompt
-    puts ('~' * 80)
     if @cart == nil
       puts "you need a cart first!", ""
       select_cart
     end
-    puts ('~' * 80)
   end
 
   def empty_cart
@@ -34,40 +35,33 @@ class Cli
   #methods for main menu
 
   def welcome_prompt
-    puts ('~' * 80)
-    puts "Thank you for using Grocery Tracker. Please enter your username", ""
-    puts ('~' * 80)
+    puts "Thank you for using Grocery Tracker. Please enter your username which is currently Alex - Nov", ""
   end
 
   def select_cart
-    puts ('~' * 80)
     puts "please enter a cart name to view or create one", ""
     cart_data = gets.chomp
     @cart = Cart.find_or_create_by(name: "#{cart_data.downcase}", user_id: @user.id)
-    puts ('~' * 80)
   end
 
   def add_item
     select_cart_prompt
-    puts ('~' * 80)
     puts "which item would you like to add?", ""
     input = gets.chomp
     added_item = Item.find_by(name: "#{input}")
-    puts ('~' * 80)
       if !added_item
         puts "That item can't be added to the cart"
       else
-        puts ('~' * 80)
+
         @cart.items << added_item
         puts "You have added #{added_item.name} to the cart"
       end
-      puts ('~' * 80)
+
   end
 
 #actually removes all instances of that item
   def remove_an_item
     select_cart_prompt
-    puts ('~' * 80)
     if @cart.items == []
       empty_cart
     else
@@ -75,7 +69,6 @@ class Cli
       input = gets.chomp
       @cart.remove_item(input)
     end
-    puts ('~' * 80)
   end
 
   def list_items
@@ -86,68 +79,46 @@ class Cli
 
   def display_cart
     select_cart_prompt
-    puts ('~' * 80)
     if @cart.items == []
       puts "the cart is empty", ""
     else
       @user.list_unique_items_and_counts(@cart.id)
     end
-    puts ('~' * 80)
   end
 
   def history
-    puts ('~' * 80)
     puts "You Cart(s)", ""
     @user.carts.each {|cart| puts "#{cart.name}", ""}
-    puts ('~' * 80)
   end
 
   def exit
-    puts ('~' * 80)
     puts "Goodbye!"
     exit!
-    puts ('~' * 80)
   end
 
-  def cart_total
+  #the total price of a cart
+  def cart_totaller
     select_cart_prompt
-    puts ('~' * 80)
-    if @cart.items == []
-      total = 0
-      puts "The cart is empty", ""
-    else
-      all_prices = @cart.items.map {|item| item.price}
-      total = all_prices.reduce(:+)
-      total.round(2)
-      puts "The total price of this cart is $#{total.round(2)}0", ""
-    end
-    puts ('~' * 80)
+    cart_total(@cart.items)
   end
 
   #cart options methods
-  def list_items_and_prices
-      puts ('~' * 80)
-      @cart.items.each {|item| puts "Spent $#{item.price}0 on #{item.name}", ""}
-      puts ('~' * 80) 
+  def items_and_prices
+    list_items_and_prices(@cart.items)
   end
 
-  #broken
-  def avg_price_per_item
+  #was broken. TESTS NEEDED
+  def avg_price_of_item
     empty_cart
     select_cart_prompt
-    puts ('~' * 80)
-    avg = @cart.avg_price_per_item
-    puts "The average price per item of this cart is $#{avg.round(2)}", ""
-    puts ('~' * 80)
+    avg_price_per_item(@cart.items)
   end
 
   #history options methods
   def item_spend
-    puts ('~' * 80)
     puts "please enter an item", ""
     input = gets.chomp
     @user.total_spend_on_item("#{input}")
-    puts ('~' * 80)
   end
 
   def total_spent
@@ -155,15 +126,12 @@ class Cli
   end
 
   def average_cart_cost
-    puts ('~' * 80)
     result = @user.average_cart_cost
     puts "Your carts cost an average of $#{result}", ""
-    puts ('~' * 80)
   end
 
   #main menu
   def help
-    puts ('~' * 80)
     puts "What would like to do today?", ""
     puts "-Type 'select cart' to start checking groceries", ""
     puts "- Type 'add' to add an item to your cart.", ""
@@ -175,7 +143,6 @@ class Cli
     puts "- Type 'history options' to enter history menu", ""
     puts "- Type 'cart options' to enter cart menu and view cart options", ""
     puts "- Type 'exit' to exit this program", ""
-    puts ('~' * 80)
   end
 
   def run_list
@@ -191,7 +158,7 @@ class Cli
       when 'list' then list_items
       when 'view' then display_cart
       when 'history' then history
-      when 'total'then cart_total
+      when 'total'then cart_totaller
       when 'cart options' then cart_options
       when 'history options' then history_options
       when 'exit' then exit
@@ -205,15 +172,13 @@ class Cli
 
   #cart options menu
   def cart_options_helper
-    puts ('~' * 80)
     puts "What would like to do today?", ""
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'items and prices' to display cart contents with prices", ""
     puts "- Type 'price per item' to display this cart's average price per item", ""
-    puts "- Type total' to display this cart's total cost", ""
+    puts "- Type 'total' to display this cart's total cost", ""
     puts "- Type 'help' to display cart options", ""
     puts "- Type 'exit' to exit", ""
-    puts ('~' * 80)
   end
 
   def cart_options
@@ -223,14 +188,14 @@ class Cli
     cart_options_helper
     input = ''
     while input
-      puts ('~' * 80)
+
       puts "Please enter a cart command", ""
       input = gets.chomp
       case input
       when 'go back' then run_list
-      when 'items and prices' then list_items_and_prices
-      when 'price per item' then avg_price_per_item
-      when 'total' then cart_total
+      when 'items and prices' then items_and_prices
+      when 'price per item' then avg_price_of_item
+      when 'total' then cart_totaller
       when 'view' then display_cart
       when 'help' then cart_options_helper
       when 'exit' then exit
@@ -239,21 +204,18 @@ class Cli
         cart_options_helper
       end
     end
-    puts ('~' * 80)
     cart_options
   end
 
   #history options menu
   def history_options_helper
-    puts ('~' * 80)
     puts "What would like to do today?", ""
     puts "- Type 'go back' to visit previous menu", ""
     puts "- Type 'total spend on item' to display the total amount spent on a single item", ""
     puts "- Type 'average cost' to display the average cost of a cart", ""
-    puts "- Type 'total spent' to display the total cost of all your carts", ""
+    # puts "- Type 'total spent' to display the total cost of all your carts", ""
     puts "- Type 'help' to display history options", ""
     puts "- Type 'exit' to exit this program", ""
-    puts ('~' * 80)
   end
 
   def history_options

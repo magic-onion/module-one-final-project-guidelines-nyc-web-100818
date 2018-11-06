@@ -2,32 +2,28 @@
 
 Thank you for using our Grocery Checker Command Line Interface Application.
 
-To install the app, make sure that your command line is in the "../modolue-one-final-project-guidelines-nyc-web-100818" directory.
+To install the app, make sure that your command line is in the "../module-one-final-project-guidelines-nyc-web-100818" directory, and that you have ruby installed on your machine.
 
-# To Dos
-DONE
- - Determine whether or not our Cart_item model is functioning as intended - Seems to be done. further testing required.
- - Test all tables and expected basic functionality
- - Decide on added features and write deliverables
- - Determine structure of seed data
- - write seed file
- - write features based on deliverables
- - test features
- - refactor methods where necessary
- - Write methods for user interface
-  - write a help command for the user
+Then, execute the "bundle install" command by typing it (without quotation marks) into your command line.
 
+to run the app, simply execute the run file by typing "ruby bin/run.rb" into your command line.
 
+You will be prompted to log in. Simply type your name to continue!
 
- - Write Readme
+# Some Tips
 
+- Type "Help" in any of the menus to view a list of commands.
 
-# Added features
+- After login, you have *some* options available to you. However, it's better to select a cart first.
 
+- If you try to select a cart that does not exist, the grocery checker will create one with the name you have provided. You can then view your carts with the "History" command.
 
+# CRUD Abilities
 
+ - Users can create carts and add or remove items from them
 
- - check all features for cart selected dependencies
+ - Users have a number of options to interact with their cart   data, including aggregate cart functions.
+
 
 
 
